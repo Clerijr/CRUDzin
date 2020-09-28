@@ -1,0 +1,26 @@
+{
+  "name": "crud-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "form.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clerijr/CRUD"
+  },
+  "author": "Cleri Jr",
+  "license": "MIT",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.7",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "express-handlebars": "^5.1.0",
+    "handlebars": "^4.5.0"
+  }
+}

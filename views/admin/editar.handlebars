@@ -1,0 +1,33 @@
+<div class="p-4 container">
+    <div class="card m-auto row text-center mx-auto justify-content-center align-items-center">
+        <h1>Editar usuário</h1>
+        <form action="/cadastro/editar" method="POST" class="col-12 form-row">
+            <input type="hidden" name="id" value="{{user.id}}">
+            <div class="col-9 my-1">
+                <input placeholder="Nome" type="text" class="form-control" name="user_name" value="{{user.name}}">
+            </div>
+            <div class="col-sm-3 my-1">
+                <select name="user_mstatus" class="custom-select w-100" id="maritalstatus">
+                    <option >Estado Civil</option>
+                    <option>Solteiro</option>
+                    <option>Casado</option>
+                    <option>Não informar</option>
+                </select>
+            </div>
+            <div class="col-2 my-1">
+                <input placeholder="Idade" type="number" class="form-control" name="user_age"value="{{user.age}}">
+            </div>
+            <div class="col-sm-4 my-1">
+                <input placeholder="CPF" type="number" class="form-control" name="user_cpf"value="{{user.cpf}}">
+            </div>
+            <div class="col-4 my-1">
+                <input placeholder="Cidade" type="text" class="form-control" name="user_city"value="{{user.city}}">
+            </div>
+            <div class="col-2 my-1">
+                <input placeholder="Estado" type="text" class="form-control" name="user_uf"value="{{user.uf}}">
+            </div>
+            <button id="submitbtn" type="submit" class="col-4 m-auto btn btn-primary">Editar</button>
+
+        </form>
+    </div>
+</div>
