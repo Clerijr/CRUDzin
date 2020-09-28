@@ -8,9 +8,10 @@ Database: MongoDB, Mongoose
 What is Done:
 - Create element and send to server
 - Read element and populate the client
-
-What is needed to do:
 - Update functionality
 - Delete functionality
+
+
+What is needed to do:
 - Polish inputs
 - Simplify data structure
