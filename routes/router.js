@@ -35,7 +35,7 @@ router.route('/cadastro/novo')
                 text: "Nome inválido"
             })
         }
-        if (!req.body.user_mstatus) {
+        if (!req.body.user_mstatus || req.body.user_mstatus == "Estado Civil") {
             req.body.user_mstatus = "Não informar"
         }
         if (typeof req.body.user_mstatus == undefined || req.body.user_mstatus == null) {
@@ -102,14 +102,18 @@ router.route('/cadastro/remover/')
 
 
 /* Edit user route */
-router.route("/cadastro/editar")
+router.route("/editar")
     /* Method Update */
     .post((req, res) => {
         User.findById({ _id: req.body.id }, (err, user) => {
             if (err) res.send("Houve um erro ao atualizar: " + err)
 
             user.name = req.body.user_name;
+            if (!req.body.user_mstatus || req.body.user_mstatus == "Estado Civil") {
+                user.ecivil = "Não informar"
+            }else{
             user.ecivil = req.body.user_mstatus;
+            };
             user.age = req.body.user_age;
             user.cpf = req.body.user_cpf;
             user.city = req.body.user_city;
@@ -125,33 +129,47 @@ router.route("/cadastro/editar")
         })
     });
 
+
+
 /* Route for API */
-router.route('/api')
-    /* Method Read */
-    .get((req, res) => {
-        User.find((error, usuarios) => {
-            if (error) res.send('Houve um erro: ' + error)
-            res.json({ usuarios })
-        })
+router.get('/api', (req,res)=>{
+    User.find((error, usuarios) => {
+        if (error) res.send('Houve um erro ao carregar a tabela: ' + error)
+        res.json({usuarios})
     })
+})
+    /* Method Read */
+    
 
 /* Render methods */
 router.get('/', (req, res) => {
     User.find((error, usuarios) => {
-        if (error) res.send('Houve um erro: ' + error)
-        res.render('tabela', { usuarios })
+        if (error) res.send('Houve um erro ao carregar a tabela: ' + error)
+        res.render('admin/tabela', { usuarios })
     })
 });
+
+
 
 router.get('/cadastro', (req, res) => {
     res.render('admin/formulario')
 });
 
+/* Find by ID */
+router.post(("/id/"), (req, res) => {
+    User.findOne({ _id: req.body.id }).then((user) => {
+        res.render('admin/idtabela', { user: user })
+    }).catch((err) => {
+        res.send("Houve um erro ao localizar o usuário: " + err)
+    })
+})
+
+
 router.get("/editar/:id", (req, res) => {
     User.findOne({ _id: req.params.id }).then((user) => {
         res.render('admin/editar', { user: user })
     }).catch((err) => {
-        res.send("Houve um erro: " + err)
+        res.send("Houve um erro ao localizar o usuário: " + err)
     })
 })
 

@@ -1,7 +1,7 @@
 <div class="p-4 container">
     <div class="card m-auto row text-center mx-auto justify-content-center align-items-center">
         <h1>Editar usuário</h1>
-        <form action="/cadastro/editar" method="POST" class="col-12 form-row">
+        <form action="/editar" method="POST" class="col-12 form-row">
             <input type="hidden" name="id" value="{{user.id}}">
             <div class="col-9 my-1">
                 <input placeholder="Nome" type="text" class="form-control" name="user_name" value="{{user.name}}">
@@ -31,3 +31,4 @@
         </form>
     </div>
 </div>
+
