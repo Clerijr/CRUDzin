@@ -20,7 +20,7 @@ app.listen(PORT, () => {
     console.log('Servidor rodando na porta ' + PORT + ' às ' + h);
 })
 // Mongoose Setting
-mongoose.connect('mongodb+srv://clerivaldojr:Ithuryel1!@cluster0.focpz.mongodb.net/test?authSource=admin&replicaSet=atlas-kavto3-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+mongoose.connect('mongodb+srv://clerivaldojr:kMX9yh6djWrrCVuI@cluster0.focpz.mongodb.net/test?authSource=admin&replicaSet=atlas-kavto3-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (err) console.log('There is an error: ', err);
     console.log('Connected with Mongoose')
 })

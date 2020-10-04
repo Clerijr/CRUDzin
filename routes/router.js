@@ -78,7 +78,7 @@ router.route('/cadastro/novo')
                 req.flash("success_msg", "Usuário criado com sucesso!")
                 res.redirect('/cadastro')
             }).catch((err) => {
-                req.flash("error_msg", "Falha ao criar o usuário: "+err)
+                req.flash("error_msg", "Falha ao criar o usuário: " + err)
                 res.redirect('/cadastro')
             })
         }
@@ -90,11 +90,11 @@ router.route('/cadastro/remover/')
     .post((req, res) => {
         User.deleteOne({
             _id: req.body.id
-        }).then(()=>{
+        }).then(() => {
             req.flash("success_msg", "Usuário removido com sucesso!")
             res.redirect('/')
         }).catch((err) => {
-            if (err) req.flash("error_msg", "Falha ao remover o usuário: "+ err)
+            if (err) req.flash("error_msg", "Falha ao remover o usuário: " + err)
             res.redirect('/')
         })
     })
@@ -111,19 +111,19 @@ router.route("/editar")
             user.name = req.body.user_name;
             if (!req.body.user_mstatus || req.body.user_mstatus == "Estado Civil") {
                 user.ecivil = "Não informar"
-            }else{
-            user.ecivil = req.body.user_mstatus;
+            } else {
+                user.ecivil = req.body.user_mstatus;
             };
             user.age = req.body.user_age;
             user.cpf = req.body.user_cpf;
             user.city = req.body.user_city;
             user.uf = req.body.user_uf;
 
-            user.save().then(()=>{
+            user.save().then(() => {
                 req.flash("success_msg", "Usuário editado com sucesso!")
                 res.redirect('/')
             }).catch((err) => {
-                if (err) req.flash("error_msg", "Falha ao editar o usuário: "+ err)
+                if (err) req.flash("error_msg", "Falha ao editar o usuário: " + err)
                 res.redirect('/')
             })
         })
@@ -132,20 +132,25 @@ router.route("/editar")
 
 
 /* Route for API */
-router.get('/api', (req,res)=>{
+router.get('/api', (req, res) => {
     User.find((error, usuarios) => {
         if (error) res.send('Houve um erro ao carregar a tabela: ' + error)
-        res.json({usuarios})
+        res.json({ usuarios })
     })
 })
-    /* Method Read */
-    
+/* Method Read */
 
-/* Render methods */
+/* Pagination Function */
+
+
+
+/* Mainpage Render method */
+
 router.get('/', (req, res) => {
     User.find((error, usuarios) => {
         if (error) res.send('Houve um erro ao carregar a tabela: ' + error)
         res.render('admin/tabela', { usuarios })
+        console.log(usuarios.length)
     })
 });
 
